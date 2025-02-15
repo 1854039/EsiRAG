@@ -88,20 +88,7 @@ async def ollama_model_if_cache(
         if if_cache_return is not None:
             return if_cache_return["return"]
     # -----------------------------------------------------
-    # client = OpenAI(
-    # base_url="https://openrouter.ai/api/v1",
-    # #api_key="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",
-    # api_key="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",
 
-    # )
-    # completion = client.chat.completions.create(
-    # model="qwen/qwen-2.5-7b-instruct",
-    # messages=[
-    #     {
-    #     "role": "user",
-    #     "content": prompt
-    #     }
-    # ]
     client = OpenAI(
         api_key=args.api_key,
         base_url=args.base_url,
@@ -114,21 +101,12 @@ async def ollama_model_if_cache(
             "content": prompt
             }
         ],
-        #stream=True
+       
         stream=False,
 
-        #response_format={"type": "json_object"}
+        response_format={"type": "json_object"}
 
     )
-    result=completion.choices[0].message.content
-    # collected_chunks = []
-    # collected_messages = []
-    # # iterate through the stream of events
-    # for chunk in completion:
-    #     collected_chunks.append(chunk)  # save the event response
-    #     chunk_message = chunk.choices[0].delta # extract the message
-    #     collected_messages.append(chunk_message)  # save the message
-    #     #print(f"Message received {chunk_time:.2f} seconds after request: {chunk_message}")  # print the delay and text
 
     # # print the time delay and text received
     # result = ''.join([m.content for m in collected_messages])
@@ -508,7 +486,7 @@ if __name__ == "__main__":
         print(f"Embedding model loading time: {load_embedding_model_time:.2f} seconds")
         print(f"Text reading time: {text_read_time:.2f} seconds")
         print(f"Indexing time: {indexing_time:.2f} seconds")
-        
+#----------------query----------------------
 #     responses = {}
 #     predictions = {}
 #     evaluation_results = {}
