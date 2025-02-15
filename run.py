@@ -3,9 +3,9 @@ import logging
 import numpy as np
 import requests
 import json
-from nano_graphrag_test import GraphRAG, QueryParam
-from nano_graphrag_test.base import BaseKVStorage
-from nano_graphrag_test._utils import compute_args_hash, wrap_embedding_func_with_attrs
+from nano_graphrag_tmp import GraphRAG, QueryParam
+from nano_graphrag_tmp.base import BaseKVStorage
+from nano_graphrag_tmp._utils import compute_args_hash, wrap_embedding_func_with_attrs
 from transformers import AutoTokenizer, AutoModel, AutoModelForCausalLM
 import argparse
 import torch
