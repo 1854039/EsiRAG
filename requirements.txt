@@ -1,0 +1,8 @@
+openai
+sentence-transformers
+scikit-learn
+numpy
+networkx
+tiktoken
+datasets
+pytest
