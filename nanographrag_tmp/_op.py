@@ -436,6 +436,29 @@ async def extract_entities(
     global_config: dict,
     n:int
 ) -> Union[BaseGraphStorage, None]:
+    """Extract entities and relations from text chunks.
+
+    Parameters
+    ----------
+    chunks : dict
+        Mapping from chunk id to ``TextChunkSchema``.
+    knwoledge_graph_inst : BaseGraphStorage
+        Graph storage instance where nodes and edges will be inserted.
+    entity_vdb : BaseVectorStorage
+        Vector database for entity embeddings.
+    mode : str
+        Extraction mode (``origin``, ``beam`` or ``entropy``).
+    global_config : dict
+        GraphRAG configuration dictionary.
+    n : int
+        Number of iterative gleaning rounds.
+
+    Returns
+    -------
+    BaseGraphStorage | None
+        Updated knowledge graph instance or ``None`` if no entities were
+        extracted.
+    """
     use_llm_func: callable = global_config["best_model_func"]
     entity_extract_max_gleaning = global_config["entity_extract_max_gleaning"]
 
@@ -811,8 +834,24 @@ def _pack_single_community_by_sub_communities(
     community: SingleCommunitySchema,
     max_token_size: int,
     already_reports: dict[str, CommunitySchema],
-) -> tuple[str, int]:
-    # TODO
+) -> tuple[str, int, set[str], set[tuple[str, str]]]:
+    """Assemble a community description from its sub communities.
+
+    Parameters
+    ----------
+    community : SingleCommunitySchema
+        Target community.
+    max_token_size : int
+        Token limit for the packed string.
+    already_reports : dict[str, CommunitySchema]
+        Mapping of community id to previously generated reports.
+
+    Returns
+    -------
+    tuple[str, int]
+        The packed CSV description string and its token length along with sets
+        of included node and edge identifiers.
+    """
     all_sub_communities = [
         already_reports[k] for k in community["sub_communities"] if k in already_reports
     ]
