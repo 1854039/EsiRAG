@@ -26,3 +26,12 @@ An example evaluation script is provided under `experiments/evaluate_entity_extr
 ```bash
 python experiments/evaluate_entity_extraction.py --dataset tacred --split validation --model <MODEL_NAME>
 ```
+
+For token level entity annotation with the WikiANN dataset using an OpenAI compatible API you can run:
+
+```bash
+python experiments/wikiann_ner.py \
+  --models gpt-3.5-turbo,gpt-4o \
+  --split validation --limit 100 \
+  --base_url <API_URL> --api_key <KEY>
+```
