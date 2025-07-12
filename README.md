@@ -31,6 +31,11 @@ For document level entity annotation with the DocRED dataset using an OpenAI com
 
 ```bash
 python experiments/docred_ner.py \
+=======
+For token level entity annotation with the WikiANN dataset using an OpenAI compatible API you can run:
+
+```bash
+python experiments/wikiann_ner.py \
   --models gpt-3.5-turbo,gpt-4o \
   --split validation --limit 100 \
   --base_url <API_URL> --api_key <KEY>
