@@ -27,6 +27,11 @@ An example evaluation script is provided under `experiments/evaluate_entity_extr
 python experiments/evaluate_entity_extraction.py --dataset tacred --split validation --model <MODEL_NAME>
 ```
 
+For document level entity annotation with the DocRED dataset using an OpenAI compatible API you can run:
+
+```bash
+python experiments/docred_ner.py \
+=======
 For token level entity annotation with the WikiANN dataset using an OpenAI compatible API you can run:
 
 ```bash
